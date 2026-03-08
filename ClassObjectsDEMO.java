@@ -94,7 +94,64 @@ public class ClassObjectsDEMO {
 //	NOTE-6:
 //	primitives aren't stored as objects by default; so they are stored in stack memory unlike objects
 	
+//	NOTE-7
+//	all classes in Java extend object class
+//	primitives don't extend object class
+//	So, even though Java has OOPs concept, it isn't purely Object oriented language
+	
+//	WRAPPER CLASS:
+//	provide a way to use primitive data types (like int, boolean, etc.) as objects.
+//	important as many Java features, such as Collections (ArrayList, HashMap), only work with objects.
+//	byte->Byte
+//	short->Short
+//	int->Integer
+//	long->Long
+//	float->Float
+//	double->Double
+//	char->Character
+//	boolean->Boolean
+
+//	BOXING:
+//	The process of converting a primitive value into an object of the corresponding wrapper class.
+//	done prior to Java 5
+//	deprecated now
+	
+//	UNBOXING:
+//	The process of converting an object of a wrapper class back to its corresponding primitive type.
+//	done prior to Java 5
+//	deprecated now
+	
+//	AUTO-BOXING:
+//	The automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes.
+	
+//	AUTO-UNBOXING:
+//	The automatic conversion of a wrapper class object back into a primitive type.
+	
+//	GETTER AND SETTER:
+//	Getters and setters are methods used to retrieve and update the value of a private variable in a class.
+//	used in encapsulation
+	
+//	PASS BY VALUE:
+//	Java is always pass-by-value never pass-by-reference.
+//	When you pass a primitive type (like int, double, boolean) to a method, Java creates a copy of the variable's value and passes it to the method. Any changes made to that variable inside the method do not affect the original variable.
+//	When you pass an object to a method, Java copies the reference (the address of the object in Heap memory) and passes that copy to the method.
 //	
+	
+//	NOTE-8:
+//	when we pass integers as wrapper classes, even then, their valu is not swapped becuase Integer is a 'final' class
+	
+//	'final' KEYWORD:
+//	its value cannot be changed once it has been initialized. It becomes a constant.
+//	method declared as final cannot be overridden by subclasses
+//	class declared as final cannot be extended or inherited
+//	Ex: Integer
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -117,6 +174,63 @@ public class ClassObjectsDEMO {
 		System.out.println(car3.price);
 		System.out.println(car3.engine);
 		
+		// any changes the variables of car3 will be reflected in car4 too
+		Car car4=car3;
+		
+		// Boxing
+		System.out.println("-----------------------------------");
+		Integer n1=new Integer(7);
+		System.out.println(n1);
+		
+		// Unboxing
+		int n2=n1.intValue();
+		System.out.println(n2);
+		
+		// Auto boxing
+		int n3=12;
+		Integer n4=n3;
+		System.out.println(n4);
+		
+		// Auto unboxing
+		int n5=n4;
+		System.out.println(n5);
+		System.out.println("-----------------------------------");	
+		
+		int x=1,y=3;
+		Integer z=x,w=y;
+		System.out.println("Pass by value - primitive");	
+		swap1(x, y);
+		System.out.println("x:"+x+"y:"+y);
+		System.out.println("Pass by value - objects");	
+		swap2(z, w);
+		System.out.println("z:"+z+"w:"+w);
+		/*
+		 * Pass by value - primitive
+		 * x:1y:3
+		 * Pass by value - objects
+		 * z:1w:3
+		 */
+		
+		System.out.println("-----------------------------------");	
+		// final variable
+		Calc2 c=new Calc2();
+		System.out.println(c.PI);
+		c.show1();
+		c.show2();
+		c.add(x, y);
+		
+		
+	}
+	
+	public static void swap1(int a, int b) {
+		a+=b;
+		b=a-b;
+		a=a=b;
+	}
+	public static void swap2(Integer a, Integer b) {
+		a+=b;
+		b=a-b;
+		a=a=b;
 	}
 	
 	static class Car{
@@ -156,4 +270,31 @@ public class ClassObjectsDEMO {
 		// String[] name=new String[5];
 		// float[] marks=new float[5];
 	}
+	
+	static class Calc{
+		// final variable - no value changes
+		final float PI=3.4f;
+		
+		// final method - cannot be overridden
+		final void show1() {
+			System.out.println("By Prateek");
+		}
+		// can be overridden
+		void show2() {
+			System.out.println("Modified by Prateek");
+		}
+		int add(int a, int b) {
+			System.out.println(a+b);
+			return a+b;
+		}
+	}
+	
+	// class cannot be extended or inherited
+	static class Calc2 extends Calc{
+		void show2() {
+			System.out.println("Modified by Priyanshu");
+		}
+	}
+	
+	
 }
