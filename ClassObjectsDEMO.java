@@ -146,13 +146,23 @@ public class ClassObjectsDEMO {
 //	class declared as final cannot be extended or inherited
 //	Ex: Integer
 	
+// JAVA GARBAGE COLLECTION:
+//	delete contents from memory automatically that aren't needed anymore
+//	When a method finishes execution, its local references are removed from the stack, leaving the objects in the heap unreachable.
+//	if no reference is found to a object in the memory, then it is marked for garbage collection
+//	Generational GC:
+	//	Young Generation: Where new objects are created. It is further divided into Eden Space, Survivor Space 0 (S0), and Survivor Space 1 (S1).
+	//	Old (Tenured) Generation: Objects that survive multiple GC cycles in the Young Generation are moved here
+	//	Permanent Generation (Metaspace): Stores metadata about classes and methods.
+//	Algorithm:
+	//	Marking: The GC identifies which pieces of memory are in use and which are not. It starts from "GC Roots" (like static variables or active thread stacks). The algorithm usually marks the live (reachable) objects which have references to. Anything that remains unmarked after the scan is what gets swept away. 'finalize()' method is called once for a object to perform cleanup like closing a file
+	//	Sweeping: It removes the "unmarked" (unreachable) objects.
+	//	Compaction: (Optional) It moves the remaining objects together to reduce memory fragmentation and make allocation of new objects faster.
 	
-	
-	
-	
-	
-	
-	
+//	NOTE-9:
+//	finalize() method has deprecated since Java 9 and marked for removal in newer versions (Java 18+).
+//	This is due to overhead created by it, unpredictability in when it will run (if the memory never runs out, it may never run), and security issues where hacker can run this method on  broken object(not initialized properly) and bring it back to life which has passed security checks and can hamper the original software as per need
+//	Cleaners -> java.lang.ref.Cleaner is the lightweight alternative
 	
 	
 	public static void main(String[] args) {
