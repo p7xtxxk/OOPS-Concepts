@@ -56,6 +56,8 @@ public class ClassObjectsDEMO {
 //	by using '.', we can only add values that are present in the template as Java is a statically typed language
 	
 //	CONSTRUCTOR:
+//	same name as class name
+//	doesn't return anything 
 //	defines what happens when object is created
 //	defines how to instantiate values in an object
 //	internally it is special type of method inside class that allows to pass values to parameters during object creation
@@ -64,13 +66,23 @@ public class ClassObjectsDEMO {
 //	Default Constructor: Java compiler automatically inserts a default constructor during compilation to provide default values to the object
 //	No-Argument Constructor: This is a constructor explicitly written by the programmer that accepts no parameters; used to set initial values
 //	Parameterized Constructor :A constructor that has a specific list of parameter; To initialize different objects with different values at the time of creation
- 	
+
+//	CONSTRUCTOR OVERLOADING:
+//	multiple constructors having same name; they are differentiated by parameters
+	
+//	NOTE-4:
+//	constructors can be overloaded like methods but they cannot be overridden like methods
 	
 //	'this' KEYWORD:
 //	refers to the current object—the instance of the class whose method or constructor is being called.
 //	used for prevent shadowing: happens when the parameter and instance have same name
 //	used to call another constructor from a constructor in the same class
 //	Method chaining -LOOK UP ON THIS
+	
+//	NOTE-5:
+//	if we use this keyword to call a parameterized constructor from default constructor inside a class.
+//	this(10,"V10",10.0f) is same as new Car(10,"V10",10.0f)
+//	this process happens internally
 	
 //	DIFFERENT PARTS OF DECLARATION
 //	Car myCar = new Car();
@@ -79,6 +91,10 @@ public class ClassObjectsDEMO {
 //	new -> to create new object
 //	Car() -> constructor
 	 
+//	NOTE-6:
+//	primitives aren't stored as objects by default; so they are stored in stack memory unlike objects
+	
+//	
 	
 	
 	
@@ -94,6 +110,13 @@ public class ClassObjectsDEMO {
 		Car[] car=new Car[4];
 		System.out.println(Arrays.toString(car));
 		// OUTPUT: [null, null, null, null]
+		
+		
+		Car car3= new Car();
+		System.out.println(car3.seats);
+		System.out.println(car3.price);
+		System.out.println(car3.engine);
+		
 	}
 	
 	static class Car{
@@ -114,7 +137,7 @@ public class ClassObjectsDEMO {
 		
 		// No-Argument Constructor-2
 		Car(){
-			this(10,"V5",78.6f);
+			this(10,"V10",10.0f);
 		}
 		
 		// parameterized constructor
@@ -133,9 +156,4 @@ public class ClassObjectsDEMO {
 		// String[] name=new String[5];
 		// float[] marks=new float[5];
 	}
-	
-	
-
-	
-	
 }
