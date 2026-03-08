@@ -82,7 +82,6 @@ public class OOPS2DEMO {
 	
 	
 	
-	
 	// we can make this static and it wont show any error because the top class is OOPS2DEMO
 	static class A {
 		void showa() {
