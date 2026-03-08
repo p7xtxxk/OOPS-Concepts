@@ -80,7 +80,33 @@ public class OOPS2DEMO {
 //	NOTE-11:
 //	'out' is of PrintStream type
 	
+//	SINGLETON CLASS:
+//	ensure that only one instance of a class ever exists in the entire application.
+//	has a standard class name
+//	single instance can be used anywhere in the program.
+//	Uses a private constructor and a static method to return the instance.
+//	we can print the hashcodes for all objects and see that they point to same location
+
+//  NOTE-12: 
+//	Eager Initialization is safe but can be wasteful. Lazy Initialization is efficient but requires synchronized blocks or volatile keywords to be safe in multi-threaded environments. For most simple cases, Eager is preferred for its readability.
 	
+//	NOTE-13 (The Singleton Trap): 
+//	A private constructor only blocks new from other top-level classes. If you are testing within the same file (in the outer class), new will still work. To truly "protect" a Singleton, you must test its accessibility from a different file or package.
+	
+	
+	// singleton class
+	static class Toy {
+		String name;
+		// used Eager
+		// create an instance
+		private static Toy t=new Toy();
+		// private constructor
+		private Toy() {}
+		// method to get the instance
+		public static Toy getInstance() {
+			return t;
+		}
+	}
 	
 	// we can make this static and it wont show any error because the top class is OOPS2DEMO
 	static class A {
@@ -194,6 +220,13 @@ public class OOPS2DEMO {
 		
 		// Standard way to call the static method in your non-static inner class
 		A.B.showb();
+		System.out.println("----------------------------------------");
+		
+		
+		Toy t1=Toy.getInstance();
+		Toy t3=Toy.getInstance();
+		System.out.println((t1==t3));
+		// OUPUT : true
 		
 	}
 }
