@@ -1,0 +1,17 @@
+# Ignore the compiled output folder
+bin/
+
+# Ignore Eclipse-specific configuration files
+.settings/
+.classpath
+.project
+
+# Ignore VS Code configuration
+.vscode/
+
+# Ignore any random .class files if they appear elsewhere
+*.class
+
+# Ignore OS-specific files (optional but recommended)
+.DS_Store
+Thumbs.db
