@@ -1,3 +1,87 @@
+//	PACKAGE:
+//	mechanism used to encapsulate a group of classes, sub-packages, and interface
+//	Think of it as a folder system on your computer that keeps your code organized and prevents naming conflicts.
+//	allows 2 classes to have same file names in different folders
+//	convention for naming is: URL in opposite direction
+
+//	NOTE-1:
+//	when using the 'import' statement, all the files are imported but folders are not
+
+//	NOTE-2:
+//	when having same class names inside different packages, write the fully qualified name
+
+//	NOTE-3
+//	the only way to use both classes with same name in the same piece of code is to use Fully Qualified Names
+
+//	NOTE-4
+//	to write directly without a prefix, the import statement must be made static like import static x.x.x.x.x;
+//	if you make 2 packages import as static which have classes with different names but both class have method with same name then direct calling as discusses earlier will cause compilation errors
+//	If you have a method with that same name locally in your current class, the local method takes priority, and the compiler will not throw an error—it will simply ignore the static imports in favor of your local code. 
+//	Ex: if we had eat() method in this code, then it would had priority over them imported methods be static or not.
+
+//	NOTE-5:
+//	packages and sub-packages are treated as entirely separate entities. You must import each one explicitly if you need its classes.
+//	java.lang.* is imported by default in all codes
+
+//	NOTE-6:
+//	If you don't specify ACCESS MODIFIER for a class or method, it is package-private.
+//	The class or method is visible to all other classes in the same package.
+//	It is completely invisible to classes in different packages, even if you try to import it.
+
+//	STATIC VARIABLES:
+//	A static variable is initialized only once, at the start of the execution. It acts as a global variable for all instances of that class.
+//	Commonly used for constants or counters that track information across all objects.
+//	even if no objects are created, static variables can be accessed
+
+//	NOTE-7:
+//	always use classname.x to access static variables; even though this.x will work avoid it	
+
+//	STATIC METHOD:
+//	can be called without creating an instance of the class
+//	cannot use the this or super keywords because they are not associated with a specific instance.
+//	A static method can only call other static methods and access static variables directly.
+//	To use a non-static (instance) variable inside a static method, we must create an object of that class first which is exactly why we create an instance of a class
+//	we can access static method inside non-static method
+
+//	NOTE-8:
+//	The main method is static so the JVM (Java Virtual Machine) can call it directly without creating an instance of the class.
+//	this is an example of non-static members inside a static member
+
+//	NOTE-9:
+//	The this keyword is a reference to the current object instance. Since static methods belong to the class itself and not to any specific instance, there is no "current object" for this to point to.
+//	this is DEPENDENT on the method and IRRELEVANT of the class
+
+//	STATIC INITIALIZATION BLOCK:
+//	primary purpose is to initialize static variables of the class
+//	executes before the main method and before any objects of that class are created.
+//	called only once when the class is loaded
+
+//  NOTE-10
+//	In Java, static members belong to the class itself rather than any specific object instance.
+//	so they can be accessed with their class name instead of object name
+//	static members (variables and methods) can be used without ever creating an object of that class, but you can still create instances of the class if you wish.
+
+//	INNER CLASS:
+//	static nested class is a class defined inside another class using the static keyword,
+//	the top class in the .java file can be private, public or protected- NEVER STATIC
+//	to refer to the outer class object, you must use OuterClassName.this
+//	A non-static inner class cannot have its own static methods or static variables (unless they are constant final variables) in Java 16 and newer.
+
+//	NOTE-11:
+//	'out' is of PrintStream type
+
+//	SINGLETON CLASS:
+//	ensure that only one instance of a class ever exists in the entire application.
+//	has a standard class name
+//	single instance can be used anywhere in the program.
+//	Uses a private constructor and a static method to return the instance.
+//	we can print the hashcodes for all objects and see that they point to same location
+
+//  NOTE-12: 
+//	Eager Initialization is safe but can be wasteful. Lazy Initialization is efficient but requires synchronized blocks or volatile keywords to be safe in multi-threaded environments. For most simple cases, Eager is preferred for its readability.
+
+//	NOTE-13 (The Singleton Trap): 
+//	A private constructor only blocks new from other top-level classes. If you are testing within the same file (in the outer class), new will still work. To truly "protect" a Singleton, you must test its accessibility from a different file or package.
 
 
 
@@ -8,90 +92,6 @@ import trial2.greeting;
 import trial2.*;
 	//  OOPS2DEMO class cannot be static as it is the top class; it can be private, public or protected
 public class OOPS2DEMO {
-//	PACKAGE:
-//	mechanism used to encapsulate a group of classes, sub-packages, and interface
-//	Think of it as a folder system on your computer that keeps your code organized and prevents naming conflicts.
-//	allows 2 classes to have same file names in different folders
-//	convention for naming is: URL in opposite direction
-	
-//	NOTE-1:
-//	when using the 'import' statement, all the files are imported but folders are not
-	
-//	NOTE-2:
-//	when having same class names inside different packages, write the fully qualified name
-	
-//	NOTE-3
-//	the only way to use both classes with same name in the same piece of code is to use Fully Qualified Names
-	
-//	NOTE-4
-//	to write directly without a prefix, the import statement must be made static like import static x.x.x.x.x;
-//	if you make 2 packages import as static which have classes with different names but both class have method with same name then direct calling as discusses earlier will cause compilation errors
-//	If you have a method with that same name locally in your current class, the local method takes priority, and the compiler will not throw an error—it will simply ignore the static imports in favor of your local code. 
-//	Ex: if we had eat() method in this code, then it would had priority over them imported methods be static or not.
-	
-//	NOTE-5:
-//	packages and sub-packages are treated as entirely separate entities. You must import each one explicitly if you need its classes.
-//	java.lang.* is imported by default in all codes
-	
-//	NOTE-6:
-//	If you don't specify ACCESS MODIFIER for a class or method, it is package-private.
-//	The class or method is visible to all other classes in the same package.
-//	It is completely invisible to classes in different packages, even if you try to import it.
-	
-//	STATIC VARIABLES:
-//	A static variable is initialized only once, at the start of the execution. It acts as a global variable for all instances of that class.
-//	Commonly used for constants or counters that track information across all objects.
-//	even if no objects are created, static variables can be accessed
-	
-//	NOTE-7:
-//	always use classname.x to access static variables; even though this.x will work avoid it	
-	
-//	STATIC METHOD:
-//	can be called without creating an instance of the class
-//	cannot use the this or super keywords because they are not associated with a specific instance.
-//	A static method can only call other static methods and access static variables directly.
-//	To use a non-static (instance) variable inside a static method, we must create an object of that class first which is exactly why we create an instance of a class
-//	we can access static method inside non-static method
-	
-//	NOTE-8:
-//	The main method is static so the JVM (Java Virtual Machine) can call it directly without creating an instance of the class.
-//	this is an example of non-static members inside a static member
-	
-//	NOTE-9:
-//	The this keyword is a reference to the current object instance. Since static methods belong to the class itself and not to any specific instance, there is no "current object" for this to point to.
-//	this is DEPENDENT on the method and IRRELEVANT of the class
-	
-//	STATIC INITIALIZATION BLOCK:
-//	primary purpose is to initialize static variables of the class
-//	executes before the main method and before any objects of that class are created.
-//	called only once when the class is loaded
-	
-//  NOTE-10
-//	In Java, static members belong to the class itself rather than any specific object instance.
-//	so they can be accessed with their class name instead of object name
-//	static members (variables and methods) can be used without ever creating an object of that class, but you can still create instances of the class if you wish.
-	
-//	INNER CLASS:
-//	static nested class is a class defined inside another class using the static keyword,
-//	the top class in the .java file can be private, public or protected- NEVER STATIC
-//	to refer to the outer class object, you must use OuterClassName.this
-//	A non-static inner class cannot have its own static methods or static variables (unless they are constant final variables) in Java 16 and newer.
-	
-//	NOTE-11:
-//	'out' is of PrintStream type
-	
-//	SINGLETON CLASS:
-//	ensure that only one instance of a class ever exists in the entire application.
-//	has a standard class name
-//	single instance can be used anywhere in the program.
-//	Uses a private constructor and a static method to return the instance.
-//	we can print the hashcodes for all objects and see that they point to same location
-
-//  NOTE-12: 
-//	Eager Initialization is safe but can be wasteful. Lazy Initialization is efficient but requires synchronized blocks or volatile keywords to be safe in multi-threaded environments. For most simple cases, Eager is preferred for its readability.
-	
-//	NOTE-13 (The Singleton Trap): 
-//	A private constructor only blocks new from other top-level classes. If you are testing within the same file (in the outer class), new will still work. To truly "protect" a Singleton, you must test its accessibility from a different file or package.
 	
 	
 	// singleton class

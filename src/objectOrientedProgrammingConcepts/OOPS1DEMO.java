@@ -132,7 +132,7 @@
 //	
 
 //	NOTE-8:
-//	when we pass integers as wrapper classes, even then, their valu is not swapped becuase Integer is a 'final' class
+//	when we pass integers as wrapper classes, even then, their value is not swapped because Integer is a 'final' class
 
 //	'final' KEYWORD:
 //	its value cannot be changed once it has been initialized. It becomes a constant.
